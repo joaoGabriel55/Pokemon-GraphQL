@@ -1,0 +1,48 @@
+
+type Query {
+  viewer: User
+  pokemons: [Pokemon]
+  pokemonsCursor(first: Int, afterCursor: String, beforeCursor: String): Page
+}
+
+type User {
+  id: ID!
+  userName: String!
+  lastName: String!
+}
+
+type Page {
+  totalCount: Int
+  edges: [Edge]
+  pageInfo: PageInfo
+}
+
+type Edge {
+  node: Pokemon
+  cursor: String
+}
+
+type PageInfo {
+  startCursor: String
+  endCursor: String
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+}
+
+type Pokemon {
+  id: ID!
+  name: String
+  priceCents: Int!
+  type: [String]!
+  stats: PokemonStats
+}
+
+type PokemonStats {
+  total: Int!
+  hp: Int!
+  attack: Int!
+  defense: Int!
+  spAtk: Int!
+  spDef: Int!
+  speed: Int!
+}

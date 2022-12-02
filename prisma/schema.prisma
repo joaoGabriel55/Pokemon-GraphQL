@@ -1,0 +1,18 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [hstore]
+}
+
+model Pokemon {
+  id         Int                    @id @default(autoincrement())
+  name       String                 @db.VarChar(255)
+  priceCents Int
+  stats      Json
+  type       String[]
+}
