@@ -1,5 +1,5 @@
 import { QueryCursorPokemons } from "../../use-cases/QueryCursorPokemons";
-import { MockPokemonRepository } from "./MockPokemonRepository";
+import { MockPokemonRepository } from "../repositories/MockPokemonRepository";
 
 describe("QueryCursorPokemons", () => {
   it("Should first 2 pokemons", async () => {

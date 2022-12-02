@@ -12,8 +12,18 @@ type Stats =
   | "defense";
 
 export class PokemonRepository implements Repository<Pokemon> {
+  create(pokemon: Omit<Pokemon, "id">): Promise<Pokemon> {
+    return prisma.pokemon.create({
+      data: {
+        name: pokemon.name,
+        priceCents: pokemon.priceCents,
+        stats: pokemon.stats ?? {},
+        type: pokemon.type,
+      },
+    });
+  }
+
   findAll(): Promise<Pokemon[]> {
-    console.log(prisma)
     return prisma.pokemon.findMany();
   }
 

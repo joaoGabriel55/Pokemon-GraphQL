@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node-dev --exit-child src/server.ts",
-    "test": "jest",
+    "dev": "dotenv -e .env -- ts-node-dev --exit-child src/server.ts",
     "prisma:seed": "ts-node-dev --exit-child prisma/setup/seed.ts",
     "prisma:clear": "ts-node-dev --exit-child prisma/setup/clear.ts",
     "prisma:runner": "ts-node-dev --exit-child prisma/setup/runner.ts",
-    "prisma:migrate": "npx prisma migrate dev --name"
+    "prisma:migrate": "npx prisma migrate dev --name",
+    "docker:test:up": "docker-compose up -d db-test",
+    "docker:test:down": "docker-compose down",
+    "test": "npm run docker:test:up && sleep 3 && dotenv -e .env.test -- npx prisma migrate reset --force && dotenv -e .env.test -- jest -i"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +35,7 @@
     "@graphql-tools/graphql-file-loader": "^7.5.11",
     "@graphql-tools/load": "^7.8.6",
     "@prisma/client": "^4.6.1",
+    "dotenv-cli": "^6.0.0",
     "fastify": "^4.9.2",
     "graphql": "^16.6.0"
   }

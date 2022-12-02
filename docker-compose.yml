@@ -8,3 +8,14 @@ services:
       POSTGRES_PASSWORD: admin
     ports:
       - "5432:5432"
+
+  db-test:
+    image: postgres
+    restart: always
+    container_name: integration-tests-pokemon
+    environment:
+      POSTGRES_DB: pokemon-test
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"

@@ -24,6 +24,12 @@ export class MockPokemonRepository implements PokemonRepository {
     throw new Error("Method not implemented.");
   }
 
+  create(pokemon: Pokemon): Promise<Pokemon> {
+    this.pokemons = [...this.pokemons, pokemon];
+
+    return Promise.resolve(pokemon);
+  }
+
   setPokemons(pokemons: Pokemon[]) {
     this.pokemons = pokemons;
   }
