@@ -1,5 +1,5 @@
 import { QueryPokemons } from "../../use-cases/QueryPokemons";
-import { MockPokemonRepository } from "./MockPokemonRepository";
+import { MockPokemonRepository } from "../repositories/MockPokemonRepository";
 
 describe("QueryPokemons", () => {
   it("Should list all pokemons", async () => {
